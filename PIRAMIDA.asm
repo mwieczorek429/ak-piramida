@@ -63,8 +63,6 @@ _code ends
 
 _data segment
 	; your data goes here
-    rows equ 25     ; Liczba wierszy w konsoli
-    cols equ 80     ; Liczba kolumn w konsoli
 _data ends
 
 _stack segment stack
