@@ -12,16 +12,16 @@ start:	mov	ax, _data
 	; your code goes here
 	;clear screen
 cls:
-	mov ax,0b800h   	; Adres poczatkowy obszaru pamieci obrazu
-	mov es,ax       	; Ustawienie segmentu ES na 0b800h
-	mov di,0        	; Zerujemy rejestr DI - offset segmentu ES
+	mov ax,0b800h   	; Ustawia wartosc segmentu ekranu tekstowego w pamieci VGA
+	mov es,ax       	; Przenosi wartosc segmentu do rejestru ES
+	mov di,0        	; Zeruje indeks docelowy (DI) dla operacji stosw
 	mov ax,25			; Liczba wierszy w konsoli
 	mov cx,80			; Liczba kolumn w konsoli
-	mul cx				; Mnozenie wiersze * kolumny i zapisanie wartosci w AX 
+	mul cx				; Mnoży wartosc wiersza przez szerokosc, wynik w AX
 	mov cx,ax   		; Ustawienie liczby iteracji na liczbe znakow mieszczacych sie w konsoli
 	mov al,' '      	; Zapisanie znaku spacji w kodzie ASCII w mlodszej czesci rejestru AX
 	mov ah,7     		; Zapisanie bajtu rejestru AX jak atrybut, kolor 
-    rep stosw			; Przysylanie wartosci AX do miejsca ES:DI wykonana az CX = 0
+    rep stosw			; Powtarza operacje stosw (umieszcza wartosc AH:AL w pamieci w segmencie ES:DI), wykonujac ja CX razy
 	
 
 ;**************************Miejsce na kod do wyswietlania piramidki
